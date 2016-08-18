@@ -1,0 +1,27 @@
+{
+  "name": "pontoon-to-json",
+  "version": "0.1.0",
+  "description": "A build-step cli tool to convert the output of Pontoon to a JSON file for use with node-based localization",
+  "bin": {
+    "pontoon-to-json": "index.js"
+  },
+  "scripts": {
+    "test": "eslint --config ./.eslintrc.yaml '*.js'"
+  },
+  "keywords": [
+    "Pontoon",
+    "l10n",
+    ".properties"
+  ],
+  "author": "Alan Mooiman <amooiman@gmail.com> (http://alanmooiman.com)",
+  "license": "MIT",
+  "dependencies": {
+    "habitat": "^3.1.2",
+    "minimist": "^1.2.0",
+    "properties-parser": "^0.3.1",
+    "q-io": "^1.13.2"
+  },
+  "devDependencies": {
+    "mofo-style": "^2.4.0"
+  }
+}

@@ -1,0 +1,10 @@
+extends: "./node_modules/mofo-style/.eslintrc.yaml"
+
+env:
+  es6: true
+  node: true
+  browser: true
+
+parserOptions:
+  sourceType: "module"
+
