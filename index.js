@@ -22,8 +22,9 @@ function getListLocales() {
       FS.listDirectoryTree(path.join(process.cwd(), config.src)).then((dirTree) => {
         var localeList = [];
 
+        // Get rid of the top level, we're only interested with what's inside it
+        dirTree.splice(0,1);
         dirTree.forEach((localeLocation) => {
-
           // Get the locale code from the end of the path. We're expecting the structure of Pontoon's output here
           var langcode = localeLocation.split(path.sep).slice(-1)[0];
 
