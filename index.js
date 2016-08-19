@@ -96,9 +96,16 @@ function getContentMessages(locale) {
 }
 
 function processMessageFiles(locales) {
+  if (!locales) {
+    console.error(`List of locales was undefined. Cannot run pontoon-to-json.`);
+    process.exit(1);
+  }
+  if (locales.length === 0) {
+    console.error(`Locale list is empty. Cannot run pontoon-to-json.`)
+    process.exit(1);
+  }
   return Promise.all(locales.map(getContentMessages));
 }
-
 getListLocales().then(processMessageFiles)
 .then(writeFile).catch((err)=> {
   console.error(err);
