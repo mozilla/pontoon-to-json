@@ -108,7 +108,6 @@ function processMessageFiles(locales) {
   return Promise.all(locales.map(getContentMessages));
 }
 
-
 getListLocales().then(processMessageFiles)
 .then(writeFile).catch((err)=> {
   console.error(err);
