@@ -1,6 +1,6 @@
 {
   "name": "pontoon-to-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A build-step cli tool to convert the output of Pontoon to a JSON file for use with node-based localization",
   "repository": {
     "type": "git",
