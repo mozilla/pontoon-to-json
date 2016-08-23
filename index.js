@@ -3,13 +3,23 @@
 var propertiesParser = require(`properties-parser`);
 var path = require(`path`);
 var FS = require(`q-io/fs`);
-var Habitat = require(`habitat`);
 var argv = require(`minimist`)(process.argv.slice(2));
 
+var Habitat = require(`habitat`);
 Habitat.load();
-var env = new Habitat();
 
-var supportedLocales = env.get(`SUPPORTED_LOCALES`) || `*`;
+var supportedLocales = process.env.SUPPORTED_LOCALES || `*`;
+
+if (supportedLocales.indexOf('[') !== -1) {
+  // FIXME: TODO: this circumvents a problem with habitat and
+  //              heroku, where the environment variable ['en-US']
+  //              magically becomes '['en-US']', which thus gets
+  //              turned into a String, rather than an Array...
+  //
+  // see: https://github.com/mozilla/learning.mozilla.org/pull/2120
+  //
+  supportedLocales = JSON.parse(supportedLocales.replace(/'/g,'"'));
+}
 
 var config = {
   "dest": argv.dest || `dist`,
