@@ -10,17 +10,6 @@ Habitat.load();
 
 var supportedLocales = process.env.SUPPORTED_LOCALES || `*`;
 
-if (supportedLocales.indexOf('[') !== -1) {
-  // FIXME: TODO: this circumvents a problem with habitat and
-  //              heroku, where the environment variable ['en-US']
-  //              magically becomes '['en-US']', which thus gets
-  //              turned into a String, rather than an Array...
-  //
-  // see: https://github.com/mozilla/learning.mozilla.org/pull/2120
-  //
-  supportedLocales = JSON.parse(supportedLocales.replace(/'/g,'"'));
-}
-
 var config = {
   "dest": argv.dest || `dist`,
   "src": argv.src || `locales`
@@ -48,6 +37,7 @@ function getListLocales() {
         reject(e);
       });
     } else {
+      supportedLocales = supportedLocales.split(",").map(item => item.trim());
       resolve(supportedLocales);
     }
   });
