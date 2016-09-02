@@ -6,18 +6,18 @@ var FS = require(`q-io/fs`);
 var argv = require(`minimist`)(process.argv.slice(2));
 
 var Habitat = require(`habitat`);
-Habitat.load();
 
-var supportedLocales = process.env.SUPPORTED_LOCALES || `*`;
+Habitat.load();
 
 var config = {
   "dest": argv.dest || `dist`,
-  "src": argv.src || `locales`
+  "src": argv.src || `locales`,
+  "locales": argv.locales || `*`
 };
 
 function getListLocales() {
   return new Promise((resolve, reject)=> {
-    if (supportedLocales === `*`) {
+    if (config.locales === `*`) {
       FS.listDirectoryTree(path.join(process.cwd(), config.src)).then((dirTree) => {
         var localeList = [];
 
@@ -37,8 +37,9 @@ function getListLocales() {
         reject(e);
       });
     } else {
-      supportedLocales = supportedLocales.split(",").map(item => item.trim());
-      resolve(supportedLocales);
+      var locales = config.locales.split(`,`).map(item => item.trim());
+
+      resolve(locales);
     }
   });
 }
