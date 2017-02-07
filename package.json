@@ -10,7 +10,7 @@
     "pontoon-to-json": "index.js"
   },
   "scripts": {
-    "test": "eslint --config ./.eslintrc.yaml '*.js'"
+    "test": "eslint ."
   },
   "keywords": [
     "Pontoon",

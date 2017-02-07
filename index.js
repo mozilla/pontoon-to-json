@@ -4,8 +4,8 @@ var propertiesParser = require(`properties-parser`);
 var path = require(`path`);
 var FS = require(`q-io/fs`);
 var argv = require(`minimist`)(process.argv.slice(2));
-
 var Habitat = require(`habitat`);
+
 Habitat.load();
 
 var supportedLocales = process.env.SUPPORTED_LOCALES || `*`;
@@ -37,7 +37,7 @@ function getListLocales() {
         reject(e);
       });
     } else {
-      supportedLocales = supportedLocales.split(",").map(item => item.trim());
+      supportedLocales = supportedLocales.split(`,`).map(item => item.trim());
       resolve(supportedLocales);
     }
   });
